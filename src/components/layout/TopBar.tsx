@@ -15,30 +15,30 @@ export default function TopBar() {
     <>
       <header className="fixed top-0 left-0 right-0 z-50 border-b border-[var(--border)]"
         style={{ background: 'rgba(15,15,26,0.98)', backdropFilter: 'blur(20px)' }}>
-        <div className="max-w-lg mx-auto flex items-center h-12 px-3 gap-2">
-          <div className="font-bold text-base bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
+        <div className="max-w-lg mx-auto flex items-center h-14 px-4 gap-3">
+          <div className="font-bold text-lg bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
             OPEN
           </div>
 
           {!showSearch ? (
             <button
               onClick={() => setShowSearch(true)}
-              className="flex-1 flex items-center gap-2 h-8 px-3 rounded-full transition-colors"
+              className="flex-1 flex items-center gap-2 h-10 px-4 rounded-full transition-colors"
               style={{ background: 'var(--bg-secondary)' }}
             >
-              <Search size={14} className="text-[var(--text-muted)]" />
-              <span className="text-xs text-[var(--text-muted)]">搜索用户、聊天室、动态...</span>
+              <Search size={16} className="text-[var(--text-muted)]" />
+              <span className="text-sm text-[var(--text-muted)]">搜索用户、聊天室、动态...</span>
             </button>
           ) : (
-            <div className="flex-1 flex items-center gap-2 h-8 px-3 rounded-full" style={{ background: 'var(--bg-secondary)' }}>
-              <Search size={14} className="text-[var(--text-muted)]" />
+            <div className="flex-1 flex items-center gap-2 h-10 px-4 rounded-full" style={{ background: 'var(--bg-secondary)' }}>
+              <Search size={16} className="text-[var(--text-muted)]" />
               <input
                 autoFocus
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 onBlur={() => { if (!searchQuery) setShowSearch(false); }}
                 placeholder="搜索..."
-                className="flex-1 text-xs bg-transparent"
+                className="flex-1 text-sm bg-transparent"
               />
               {searchQuery && (
                 <button onClick={() => { setSearchQuery(''); setShowSearch(false); }} className="text-[var(--text-muted)]">
@@ -48,20 +48,20 @@ export default function TopBar() {
             </div>
           )}
 
-          <div className="flex items-center gap-0.5">
+          <div className="flex items-center gap-1">
             <button
               onClick={() => router.push('/chat/global')}
-              className="w-8 h-8 flex items-center justify-center rounded-full transition-colors hover:bg-[var(--bg-hover)]"
+              className="w-10 h-10 flex items-center justify-center rounded-full transition-colors hover:bg-[var(--bg-hover)]"
             >
-              <MessageCircle size={18} className="text-[var(--text-secondary)]" />
+              <MessageCircle size={20} className="text-[var(--text-secondary)]" />
             </button>
             <button
               onClick={toggleNotifications}
-              className="w-8 h-8 flex items-center justify-center rounded-full transition-colors hover:bg-[var(--bg-hover)] relative"
+              className="w-10 h-10 flex items-center justify-center rounded-full transition-colors hover:bg-[var(--bg-hover)] relative"
             >
-              <Bell size={18} className="text-[var(--text-secondary)]" />
+              <Bell size={20} className="text-[var(--text-secondary)]" />
               {unreadCount > 0 && (
-                <span className="absolute top-0.5 right-0.5 w-3.5 h-3.5 bg-red-500 rounded-full text-[9px] text-white flex items-center justify-center font-bold">
+                <span className="absolute top-1 right-1 w-4 h-4 bg-red-500 rounded-full text-[10px] text-white flex items-center justify-center font-bold">
                   {unreadCount > 9 ? '9+' : unreadCount}
                 </span>
               )}
@@ -73,34 +73,34 @@ export default function TopBar() {
       {showNotifications && (
         <>
           <div className="fixed inset-0 z-40" onClick={toggleNotifications} />
-          <div className="fixed top-12 right-2 z-50 w-72 max-h-80 rounded-xl border border-[var(--border)] overflow-hidden animate-fadeIn shadow-2xl"
+          <div className="fixed top-14 right-3 z-50 w-80 max-h-96 rounded-2xl border border-[var(--border)] overflow-hidden animate-fadeIn shadow-2xl"
             style={{ background: 'var(--bg-secondary)' }}>
-            <div className="flex items-center justify-between p-2 border-b border-[var(--border)]">
-              <span className="font-semibold text-[11px]">通知</span>
+            <div className="flex items-center justify-between p-3 border-b border-[var(--border)]">
+              <span className="font-semibold text-sm">通知</span>
               {unreadCount > 0 && (
-                <button onClick={markAllNotificationsRead} className="text-[10px] text-[var(--accent-light)]">
+                <button onClick={markAllNotificationsRead} className="text-xs text-[var(--accent-light)]">
                   全部已读
                 </button>
               )}
             </div>
-            <div className="overflow-y-auto max-h-72">
+            <div className="overflow-y-auto max-h-80">
               {notifications.length === 0 ? (
-                <div className="p-4 text-center text-[var(--text-muted)] text-[10px]">暂无通知</div>
+                <div className="p-6 text-center text-[var(--text-muted)] text-sm">暂无通知</div>
               ) : (
                 notifications.map((n) => (
                   <div
                     key={n.id}
-                    className="flex items-start gap-2 p-2 transition-colors hover:bg-[var(--bg-hover)] cursor-pointer"
+                    className="flex items-start gap-3 p-3 transition-colors hover:bg-[var(--bg-hover)] cursor-pointer"
                     style={{ background: n.isRead ? 'transparent' : 'rgba(99,102,241,0.05)' }}
                   >
-                    <img src={n.avatar} alt="" className="w-7 h-7 rounded-full flex-shrink-0" />
+                    <img src={n.avatar} alt="" className="w-9 h-9 rounded-full flex-shrink-0" />
                     <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-1">
-                        <span className="text-[11px] font-medium">{n.title}</span>
-                        {!n.isRead && <span className="w-1.5 h-1.5 bg-indigo-500 rounded-full" />}
+                      <div className="flex items-center gap-1.5">
+                        <span className="text-sm font-medium">{n.title}</span>
+                        {!n.isRead && <span className="w-2 h-2 bg-indigo-500 rounded-full" />}
                       </div>
-                      <p className="text-[10px] text-[var(--text-secondary)] mt-0.5 truncate">{n.content}</p>
-                      <span className="text-[9px] text-[var(--text-muted)] mt-0.5">{n.createdAt}</span>
+                      <p className="text-xs text-[var(--text-secondary)] mt-1 truncate">{n.content}</p>
+                      <span className="text-[11px] text-[var(--text-muted)] mt-1">{n.createdAt}</span>
                     </div>
                   </div>
                 ))

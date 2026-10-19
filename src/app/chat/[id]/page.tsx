@@ -88,36 +88,36 @@ function ChatPage() {
 
   return (
     <div className="h-screen flex flex-col" style={{ background: 'var(--bg-primary)' }}>
-      <header className="flex items-center h-12 px-2.5 border-b border-[var(--border)] flex-shrink-0"
+      <header className="flex items-center h-14 px-3 border-b border-[var(--border)] flex-shrink-0"
         style={{ background: 'rgba(15,15,26,0.98)', backdropFilter: 'blur(20px)' }}>
-        <button onClick={() => router.back()} className="w-7 h-7 rounded-full flex items-center justify-center mr-1.5 hover:bg-[var(--bg-hover)]">
-          <ArrowLeft size={18} />
+        <button onClick={() => router.back()} className="w-9 h-9 rounded-full flex items-center justify-center mr-2 hover:bg-[var(--bg-hover)]">
+          <ArrowLeft size={20} />
         </button>
-        <img src={chatAvatar} alt="" className="w-7 h-7 rounded-full mr-1.5" />
+        <img src={chatAvatar} alt="" className="w-9 h-9 rounded-full mr-2" />
         <div className="flex-1 min-w-0" onClick={() => isGroupChat && setShowInfo(!showInfo)}>
-          <h2 className="font-semibold text-sm truncate cursor-pointer">{chatTitle}</h2>
-          <p className="text-[10px] text-[var(--text-muted)]">
+          <h2 className="font-semibold text-base truncate cursor-pointer">{chatTitle}</h2>
+          <p className="text-xs text-[var(--text-muted)]">
             {chatRoom ? `${memberCount?.toLocaleString()} 成员 · ${chatRoom.onlineCount} 在线` :
               chatOnline ? '在线' : '最后活跃 ' + (chatUser?.lastActive || '')}
           </p>
         </div>
-        <div className="flex items-center gap-0.5">
-          <button className="w-7 h-7 rounded-full flex items-center justify-center hover:bg-[var(--bg-hover)]">
-            <Phone size={15} className="text-[var(--text-secondary)]" />
+        <div className="flex items-center gap-1">
+          <button className="w-9 h-9 rounded-full flex items-center justify-center hover:bg-[var(--bg-hover)]">
+            <Phone size={18} className="text-[var(--text-secondary)]" />
           </button>
-          <button className="w-7 h-7 rounded-full flex items-center justify-center hover:bg-[var(--bg-hover)]">
-            <Video size={15} className="text-[var(--text-secondary)]" />
+          <button className="w-9 h-9 rounded-full flex items-center justify-center hover:bg-[var(--bg-hover)]">
+            <Video size={18} className="text-[var(--text-secondary)]" />
           </button>
-          <button onClick={() => setShowInfo(!showInfo)} className="w-7 h-7 rounded-full flex items-center justify-center hover:bg-[var(--bg-hover)]">
-            <MoreVertical size={15} className="text-[var(--text-secondary)]" />
+          <button onClick={() => setShowInfo(!showInfo)} className="w-9 h-9 rounded-full flex items-center justify-center hover:bg-[var(--bg-hover)]">
+            <MoreVertical size={18} className="text-[var(--text-secondary)]" />
           </button>
         </div>
       </header>
 
-      <div className="flex-1 overflow-y-auto px-2.5 py-3">
+      <div className="flex-1 overflow-y-auto px-3 py-4">
         {!isGroupChat && chatMessages.length > 0 && (
-          <div className="text-center mb-3">
-            <span className="text-[10px] text-[var(--text-muted)] px-2.5 py-0.5 rounded-full" style={{ background: 'var(--bg-secondary)' }}>
+          <div className="text-center mb-4">
+            <span className="text-xs text-[var(--text-muted)] px-3 py-1 rounded-full" style={{ background: 'var(--bg-secondary)' }}>
               以下是你和 {chatUser?.nickname} 的对话
             </span>
           </div>
@@ -127,11 +127,11 @@ function ChatPage() {
           const isOwn = msg.isOwn;
           const showAvatar = !isOwn && (idx === 0 || chatMessages[idx - 1].senderId !== msg.senderId);
           return (
-            <div key={msg.id} className={`flex gap-1.5 mb-2 ${isOwn ? 'flex-row-reverse' : ''} animate-fadeIn`}>
+            <div key={msg.id} className={`flex gap-2 mb-3 ${isOwn ? 'flex-row-reverse' : ''} animate-fadeIn`}>
               {!isOwn && (
-                <div className="w-7 flex-shrink-0">
+                <div className="w-8 flex-shrink-0">
                   {showAvatar && (
-                    <img src={msg.senderAvatar} alt="" className="w-7 h-7 rounded-full cursor-pointer"
+                    <img src={msg.senderAvatar} alt="" className="w-8 h-8 rounded-full cursor-pointer"
                       onClick={() => {
                         const u = users.find((u) => u.id === msg.senderId);
                         if (u) setSelectedUser(u);
@@ -141,16 +141,16 @@ function ChatPage() {
               )}
               <div className={`max-w-[75%] ${isOwn ? 'items-end' : 'items-start'}`}>
                 {showAvatar && !isOwn && (
-                  <span className="text-[10px] text-[var(--text-muted)] mb-0.5 block">{msg.senderName}</span>
+                  <span className="text-xs text-[var(--text-muted)] mb-1 block">{msg.senderName}</span>
                 )}
                 <div
-                  className="px-2.5 py-1.5 rounded-2xl text-sm"
+                  className="px-3 py-2 rounded-2xl text-sm"
                   style={isOwn
                     ? { background: 'var(--gradient-1)', color: 'white', borderBottomRightRadius: 4 }
                     : { background: 'var(--bg-card)', color: 'var(--text-primary)', borderBottomLeftRadius: 4 }}>
                   {msg.content}
                 </div>
-                <span className="text-[9px] text-[var(--text-muted)] mt-0.5 block" style={{ textAlign: isOwn ? 'right' : 'left' }}>
+                <span className="text-[10px] text-[var(--text-muted)] mt-1 block" style={{ textAlign: isOwn ? 'right' : 'left' }}>
                   {msg.timestamp}
                 </span>
               </div>
@@ -161,26 +161,26 @@ function ChatPage() {
       </div>
 
       {showEmoji && (
-        <div className="px-2 py-1 border-t border-[var(--border)] flex gap-1 flex-wrap" style={{ background: 'var(--bg-secondary)' }}>
+        <div className="px-3 py-2 border-t border-[var(--border)] flex gap-2 flex-wrap" style={{ background: 'var(--bg-secondary)' }}>
           {emojis.map((emoji) => (
             <button key={emoji} onClick={() => setInputText(inputText + emoji)}
-              className="w-7 h-7 rounded-lg flex items-center justify-center text-sm hover:bg-[var(--bg-hover)] transition-colors">
+              className="w-9 h-9 rounded-lg flex items-center justify-center text-base hover:bg-[var(--bg-hover)] transition-colors">
               {emoji}
             </button>
           ))}
         </div>
       )}
 
-      <div className="flex items-center gap-1.5 p-2 border-t border-[var(--border)] flex-shrink-0"
+      <div className="flex items-center gap-2 p-3 border-t border-[var(--border)] flex-shrink-0"
         style={{ background: 'rgba(15,15,26,0.98)' }}>
         <button onClick={() => setShowEmoji(!showEmoji)}
-          className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-[var(--bg-hover)]">
-          <Smile size={18} className={showEmoji ? 'text-[var(--accent-light)]' : 'text-[var(--text-secondary)]'} />
+          className="w-10 h-10 rounded-full flex items-center justify-center hover:bg-[var(--bg-hover)]">
+          <Smile size={20} className={showEmoji ? 'text-[var(--accent-light)]' : 'text-[var(--text-secondary)]'} />
         </button>
-        <button className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-[var(--bg-hover)]">
-          <Paperclip size={18} className="text-[var(--text-secondary)]" />
+        <button className="w-10 h-10 rounded-full flex items-center justify-center hover:bg-[var(--bg-hover)]">
+          <Paperclip size={20} className="text-[var(--text-secondary)]" />
         </button>
-        <div className="flex-1 flex items-center h-9 px-3 rounded-full" style={{ background: 'var(--bg-secondary)' }}>
+        <div className="flex-1 flex items-center h-10 px-4 rounded-full" style={{ background: 'var(--bg-secondary)' }}>
           <input
             value={inputText}
             onChange={(e) => setInputText(e.target.value)}
@@ -191,13 +191,13 @@ function ChatPage() {
         </div>
         {inputText.trim() ? (
           <button onClick={sendMessage}
-            className="w-8 h-8 rounded-full flex items-center justify-center"
+            className="w-10 h-10 rounded-full flex items-center justify-center"
             style={{ background: 'var(--gradient-1)' }}>
-            <Send size={14} className="text-white" />
+            <Send size={16} className="text-white" />
           </button>
         ) : (
-          <button className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-[var(--bg-hover)]">
-            <Mic size={18} className="text-[var(--text-secondary)]" />
+          <button className="w-10 h-10 rounded-full flex items-center justify-center hover:bg-[var(--bg-hover)]">
+            <Mic size={20} className="text-[var(--text-secondary)]" />
           </button>
         )}
       </div>
@@ -205,26 +205,26 @@ function ChatPage() {
       {showInfo && isGroupChat && chatRoom && (
         <>
           <div className="fixed inset-0 z-40 bg-black/50" onClick={() => setShowInfo(false)} />
-          <div className="fixed right-0 top-0 bottom-0 z-50 w-64 border-l border-[var(--border)] overflow-y-auto animate-fadeIn"
+          <div className="fixed right-0 top-0 bottom-0 z-50 w-72 border-l border-[var(--border)] overflow-y-auto animate-fadeIn"
             style={{ background: 'var(--bg-secondary)' }}>
-            <div className="p-3 text-center">
-              <img src={chatRoom.avatar} alt="" className="w-14 h-14 rounded-2xl mx-auto mb-1.5" />
-              <h3 className="font-bold text-sm">{chatRoom.name}</h3>
-              <p className="text-[10px] text-[var(--text-muted)] mt-0.5">{chatRoom.description}</p>
-              <p className="text-[10px] text-[var(--text-muted)] mt-0.5">
+            <div className="p-4 text-center">
+              <img src={chatRoom.avatar} alt="" className="w-16 h-16 rounded-2xl mx-auto mb-2" />
+              <h3 className="font-bold text-base">{chatRoom.name}</h3>
+              <p className="text-xs text-[var(--text-muted)] mt-1">{chatRoom.description}</p>
+              <p className="text-xs text-[var(--text-muted)] mt-1">
                 {chatRoom.memberCount.toLocaleString()} 成员 · {chatRoom.onlineCount} 在线
               </p>
             </div>
-            <div className="px-3 pb-3">
-              <h4 className="text-[10px] font-semibold text-[var(--text-muted)] mb-1.5">在线成员</h4>
-              <div className="space-y-0.5">
+            <div className="px-4 pb-4">
+              <h4 className="text-xs font-semibold text-[var(--text-muted)] mb-2">在线成员</h4>
+              <div className="space-y-1">
                 {users.filter((u) => u.online).slice(0, 6).map((user) => (
-                  <div key={user.id} className="flex items-center gap-2 p-1.5 rounded-lg hover:bg-[var(--bg-hover)] cursor-pointer"
+                  <div key={user.id} className="flex items-center gap-3 p-2 rounded-lg hover:bg-[var(--bg-hover)] cursor-pointer"
                     onClick={() => { setSelectedUser(user); setShowInfo(false); }}>
-                    <img src={user.avatar} alt="" className="w-7 h-7 rounded-full" />
+                    <img src={user.avatar} alt="" className="w-9 h-9 rounded-full" />
                     <div className="flex-1 min-w-0">
-                      <span className="text-xs">{user.nickname}</span>
-                      <span className="w-1.5 h-1.5 bg-green-400 rounded-full ml-1.5 inline-block" />
+                      <span className="text-sm">{user.nickname}</span>
+                      <span className="w-2 h-2 bg-green-400 rounded-full ml-2 inline-block" />
                     </div>
                   </div>
                 ))}

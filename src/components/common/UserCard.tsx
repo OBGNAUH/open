@@ -16,44 +16,44 @@ export default function UserCard({ user, onClose }: UserCardProps) {
       <div className="fixed inset-0 z-50 bg-black/50" onClick={onClose} />
       <div className="fixed inset-x-6 top-1/3 z-50 rounded-2xl border border-[var(--border)] overflow-hidden animate-fadeIn shadow-2xl max-w-sm mx-auto"
         style={{ background: 'var(--bg-secondary)' }}>
-        <div className="relative h-20" style={{ background: 'var(--gradient-1)' }}>
-          <button onClick={onClose} className="absolute top-2 right-2 w-6 h-6 rounded-full bg-black/30 flex items-center justify-center text-white">
-            <X size={12} />
+        <div className="relative h-24" style={{ background: 'var(--gradient-1)' }}>
+          <button onClick={onClose} className="absolute top-3 right-3 w-8 h-8 rounded-full bg-black/30 flex items-center justify-center text-white">
+            <X size={14} />
           </button>
         </div>
-        <div className="px-3 pb-3 -mt-7">
-          <img src={user.avatar} alt={user.nickname} className="w-14 h-14 rounded-full border-2 object-cover"
+        <div className="px-4 pb-4 -mt-8">
+          <img src={user.avatar} alt={user.nickname} className="w-16 h-16 rounded-full border-2 object-cover"
             style={{ borderColor: 'var(--bg-secondary)' }} />
-          <div className="mt-1.5">
-            <div className="flex items-center gap-1.5">
-              <h3 className="font-bold text-sm">{user.nickname}</h3>
-              {user.online && <span className="w-1.5 h-1.5 bg-green-500 rounded-full" />}
+          <div className="mt-2">
+            <div className="flex items-center gap-2">
+              <h3 className="font-bold text-base">{user.nickname}</h3>
+              {user.online && <span className="w-2 h-2 bg-green-500 rounded-full" />}
             </div>
-            <p className="text-[11px] text-[var(--text-secondary)] mt-0.5">{user.bio}</p>
-            <p className="text-[10px] text-[var(--text-muted)] mt-0.5">{user.city}, {user.country}</p>
-            <div className="flex flex-wrap gap-1 mt-1.5">
+            <p className="text-xs text-[var(--text-secondary)] mt-1">{user.bio}</p>
+            <p className="text-[11px] text-[var(--text-muted)] mt-1">{user.city}, {user.country}</p>
+            <div className="flex flex-wrap gap-1.5 mt-2">
               {user.tags.map((tag) => (
-                <span key={tag} className="px-1.5 py-0.5 rounded-full text-[9px] font-medium"
+                <span key={tag} className="px-2 py-1 rounded-full text-[10px] font-medium"
                   style={{ background: 'rgba(99,102,241,0.15)', color: 'var(--accent-light)' }}>
                   {tag}
                 </span>
               ))}
             </div>
-            <div className="flex gap-1.5 mt-3">
+            <div className="flex gap-2 mt-4">
               <button
                 onClick={() => { onClose(); router.push('/chat/' + user.id); }}
-                className="flex-1 h-8 rounded-full text-xs font-medium flex items-center justify-center gap-1 transition-opacity hover:opacity-80"
+                className="flex-1 h-9 rounded-full text-sm font-medium flex items-center justify-center gap-1.5 transition-opacity hover:opacity-80"
                 style={{ background: 'var(--gradient-1)', color: 'white' }}
               >
-                <MessageCircle size={12} /> 私聊
+                <MessageCircle size={14} /> 私聊
               </button>
-              <button className="h-8 px-3 rounded-full text-xs font-medium flex items-center justify-center gap-1 border transition-colors"
+              <button className="h-9 px-4 rounded-full text-sm font-medium flex items-center justify-center gap-1.5 border transition-colors"
                 style={{ borderColor: 'var(--accent)', color: 'var(--accent-light)' }}>
-                <UserPlus size={12} /> 好友
+                <UserPlus size={14} /> 好友
               </button>
-              <button className="w-8 h-8 rounded-full flex items-center justify-center border transition-colors"
+              <button className="w-9 h-9 rounded-full flex items-center justify-center border transition-colors"
                 style={{ borderColor: 'var(--border)', color: 'var(--text-secondary)' }}>
-                <Heart size={12} />
+                <Heart size={14} />
               </button>
             </div>
           </div>
