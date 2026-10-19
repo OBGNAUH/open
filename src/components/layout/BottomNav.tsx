@@ -24,7 +24,7 @@ export default function BottomNav() {
   return (
     <nav className="fixed bottom-0 left-0 right-0 z-50 border-t border-[var(--border)]"
       style={{ background: 'rgba(15,15,26,0.98)', backdropFilter: 'blur(20px)' }}>
-      <div className="max-w-lg mx-auto flex items-center justify-around h-16 px-2">
+      <div className="max-w-lg mx-auto flex items-center justify-around h-20 px-3">
         {tabs.map((tab) => {
           const isActive = activeTab === tab.id;
           const Icon = tab.icon;
@@ -32,21 +32,21 @@ export default function BottomNav() {
             <button
               key={tab.id}
               onClick={() => handleTab(tab)}
-              className="flex flex-col items-center justify-center gap-1 w-16 h-14 rounded-xl transition-all duration-200 relative"
+              className="flex flex-col items-center justify-center gap-1.5 w-20 h-16 rounded-2xl transition-all duration-200 relative"
               style={{
                 color: isActive ? 'var(--accent-light)' : 'var(--text-muted)',
-                background: isActive ? 'rgba(99,102,241,0.08)' : 'transparent',
+                background: isActive ? 'rgba(99,102,241,0.1)' : 'transparent',
               }}
             >
               <div className="relative">
-                <Icon size={22} strokeWidth={isActive ? 2.2 : 1.6} />
+                <Icon size={26} strokeWidth={isActive ? 2.5 : 1.6} />
                 {tab.id === 'friends' && unreadCount > 0 && (
-                  <span className="absolute -top-1.5 -right-2 w-4 h-4 bg-red-500 rounded-full text-[9px] text-white flex items-center justify-center font-bold">
+                  <span className="absolute -top-2 -right-2.5 w-5 h-5 bg-red-500 rounded-full text-[10px] text-white flex items-center justify-center font-bold">
                     {unreadCount > 9 ? '9+' : unreadCount}
                   </span>
                 )}
               </div>
-              <span className="text-xs font-medium">{tab.label}</span>
+              <span className="text-sm font-semibold">{tab.label}</span>
             </button>
           );
         })}
