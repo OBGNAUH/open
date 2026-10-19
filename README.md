@@ -1,36 +1,145 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# OPEN 无界社交平台
 
-## Getting Started
+开放、自由、连接世界的综合社交平台。
 
-First, run the development server:
+## 技术栈
+
+- **前端**: Next.js 16 + React 19 + TypeScript
+- **样式**: Tailwind CSS 4
+- **状态管理**: Zustand
+- **图标**: Lucide React
+- **头像**: DiceBear API
+
+## 快速开始
 
 ```bash
+# 安装依赖
+npm install
+
+# 启动开发服务器
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# 构建生产版本
+npm run build
+
+# 启动生产服务器
+npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+访问 http://localhost:3000
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 项目结构
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+src/
+├── app/                    # Next.js App Router 页面
+│   ├── page.tsx           # 首页（重定向到 /world）
+│   ├── layout.tsx         # 根布局
+│   ├── globals.css        # 全局样式
+│   ├── world/             # 世界聊天大厅
+│   ├── nearby/            # 地方区域聊天
+│   ├── friends/           # 好友与发现
+│   ├── moments/           # 动态广场
+│   ├── profile/           # 个人主页
+│   └── chat/[id]/         # 聊天界面（群聊/私聊）
+── components/
+│   ├── layout/            # 布局组件（顶部栏、底部导航）
+│   ├── chat/              # 聊天组件
+│   ├── world/             # 世界聊天组件
+│   ├── friends/           # 好友组件
+│   ├── moments/           # 动态组件
+│   ├── profile/           # 个人主页组件
+│   └── common/            # 通用组件（头像、用户卡片）
+├── store/                 # Zustand 状态管理
+├── data/                  # 模拟数据
+└── types/                 # TypeScript 类型定义
+```
 
-## Learn More
+## 功能模块
 
-To learn more about Next.js, take a look at the following resources:
+### 1. 世界聊天大厅 (`/world`)
+- 全球公开聊天室列表
+- 按分类筛选（科技、音乐、旅行、美食等）
+- 搜索聊天室
+- 收藏/加入聊天室
+- 点击进入聊天
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 2. 地方区域 (`/nearby`)
+- 按国家/城市分类
+- 热门话题展示
+- 城市聊天室
+- 活跃用户展示
+- 区域推荐
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 3. 好友系统 (`/friends`)
+- 好友列表（在线状态）
+- 好友申请处理（接受/拒绝）
+- 用户发现与推荐
+- 群组管理
+- 搜索好友
 
-## Deploy on Vercel
+### 4. 动态广场 (`/moments`)
+- 推荐流/关注流
+- 发布动态（文字+图片）
+- 点赞、评论、分享、收藏
+- 话题标签
+- 可见性设置
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 5. 个人主页 (`/profile`)
+- 自定义头像、封面、简介
+- 动态/相册/资料切换
+- 好友/关注/粉丝统计
+- 编辑模式
+- 设置面板（隐私、通知、深色模式）
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 6. 聊天界面 (`/chat/[id]`)
+- 群聊和私聊统一界面
+- 实时消息发送
+- 表情选择
+- 自动回复（模拟）
+- 成员信息面板
+- 语音/视频通话按钮（预留）
+
+## 第一阶段完成状态
+
+- [x] 项目脚手架搭建
+- [x] 底部5Tab导航
+- [x] 顶部搜索栏和通知
+- [x] 世界聊天大厅
+- [x] 地方区域聊天
+- [x] 好友发现系统
+- [x] 动态广场
+- [x] 个人主页
+- [x] 聊天界面
+- [x] 模拟数据
+- [x] 响应式设计
+- [x] 深色主题
+
+## 后续阶段
+
+### 第二阶段：真实后端
+- 用户注册/登录
+- PostgreSQL 数据库
+- WebSocket 实时消息
+- 文件上传
+- 权限控制
+
+### 第三阶段：测试与安全
+- 端到端测试
+- 安全审计
+- 性能优化
+- 移动端适配
+
+### 第四阶段：部署上线
+- 云平台部署
+- 数据库迁移
+- 监控告警
+- 用户反馈
+
+## 注意事项
+
+- 当前为第一阶段原型，所有数据为模拟数据
+- 聊天消息刷新后会重置
+- 头像使用 DiceBear API 生成
+- 动态图片使用 Unsplash 随机图片
+- 语音/视频通话功能为预留接口
