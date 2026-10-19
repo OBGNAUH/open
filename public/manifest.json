@@ -1,0 +1,18 @@
+{
+  "name": "OPEN 无界社交平台",
+  "short_name": "OPEN",
+  "description": "开放、自由、连接世界的综合社交平台",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f0f1a",
+  "theme_color": "#6366f1",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
